@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2017 at 04:22 PM
+-- Generation Time: Jan 07, 2018 at 01:22 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -40,7 +40,8 @@ CREATE TABLE `migrations` (
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1);
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2017_12_30_175155_create_stu_masters_table', 1);
 
 -- --------------------------------------------------------
 
@@ -53,6 +54,29 @@ CREATE TABLE `password_resets` (
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stu_masters`
+--
+
+CREATE TABLE `stu_masters` (
+  `stuid` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `is_status` tinyint(4) NOT NULL DEFAULT '0',
+  `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `stu_masters`
+--
+
+INSERT INTO `stu_masters` (`stuid`, `user_id`, `created_by`, `is_status`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 7, 2, 0, NULL, '2018-01-04 09:09:28', '2018-01-04 09:09:28');
 
 -- --------------------------------------------------------
 
@@ -82,7 +106,8 @@ INSERT INTO `users` (`id`, `name`, `password`, `email`, `user_type`, `is_block`,
 (2, 'admin', '$2y$10$X7H.36zdpjZaLcqNPdul/uJv4pQ9WG7fU6mykl3e7fmDCsYr6yG8W', 'admin@admin.com', 'A', 0, NULL, 'IIhKTQGDVKdKOomyh45HNdmmFpechr2yQr70uiB7KCNINV8K91IPJVAxxSSH', '2017-12-24 14:43:40', '2017-12-24 14:43:40'),
 (3, 'employee', '$2y$10$M9cbLv8TiLlQOt4GjMYlYOvhumwKBf.xWfsR6X70R6uHcEtEaFDR6', 'employee@employee.com', 'S', 0, NULL, 'dDZ1I1nb19oJCl3XzDOgT38zaQqf6zqek5tkGkC3okxDIRfZbDdYvWf0Gkpf', '2017-12-24 14:44:34', '2017-12-24 14:44:34'),
 (5, 'test', '$2y$10$jyY4u2kdwEpNbbf/Zo2HXutQsY3oiZw1yVJEGoRXh415Cj2AQltGe', 'test@test.com', 'S', 0, NULL, 'NgXUYSOp6wGthWByJ1EjoEuE2YKosRHRalSVmNBvCacgkZRtZ3YN8sxDMGdE', '2017-12-24 15:09:30', '2017-12-24 15:09:30'),
-(6, 'test2', '$2y$10$sh3j2SIJPFn1mK0UmsJqeuoqb8Vxk8bScbIphKDmzFmIoUrJ0tXRi', 'test2@test.com', 'S', 0, NULL, '9YmG5okdujEc9PIOfBB4NUxSjO8RK7FYmJ4x0LX9Y0sYH000dKZUlb2wYJPa', '2017-12-24 15:11:40', '2017-12-24 15:11:40');
+(6, 'test2', '$2y$10$sh3j2SIJPFn1mK0UmsJqeuoqb8Vxk8bScbIphKDmzFmIoUrJ0tXRi', 'test2@test.com', 'S', 0, NULL, '9YmG5okdujEc9PIOfBB4NUxSjO8RK7FYmJ4x0LX9Y0sYH000dKZUlb2wYJPa', '2017-12-24 15:11:40', '2017-12-24 15:11:40'),
+(7, 'aaa', '$2y$10$rk.M2n6NJ4gJasyG5apqA.Oe8poGcxUc4t9acKuyA5PbmAXCBMc4W', 'aaa@aaa.com', 'S', 0, NULL, NULL, '2018-01-04 09:09:28', '2018-01-04 09:09:28');
 
 --
 -- Indexes for dumped tables
@@ -101,6 +126,15 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `stu_masters`
+--
+ALTER TABLE `stu_masters`
+  ADD PRIMARY KEY (`stuid`),
+  ADD KEY `stu_masters_user_id_foreign` (`user_id`),
+  ADD KEY `stu_masters_created_by_foreign` (`created_by`),
+  ADD KEY `stu_masters_updated_by_foreign` (`updated_by`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -115,13 +149,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `stu_masters`
+--
+ALTER TABLE `stu_masters`
+  MODIFY `stuid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `stu_masters`
+--
+ALTER TABLE `stu_masters`
+  ADD CONSTRAINT `stu_masters_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `stu_masters_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `stu_masters_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
