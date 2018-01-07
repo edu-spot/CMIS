@@ -39,12 +39,16 @@ class CreateStudentController extends Controller
     }
 
 
-   // public funcition view()
-   // {
-   // 	$user = user::find(14)->stu_master;
-    	//return $user;
+   public function view()
+   {	
+   		$data = array(
+   		$user = user::find(7),
+    	$stu = user::find(7)->stu_master,
+    	);
+    	return $data;
+    	
    // 	return view('home',compact('user'));
-   // }
+    }
 
 
 
@@ -66,10 +70,11 @@ class CreateStudentController extends Controller
 
         $id = user::where('email', $data['email'])->first();
         $tableM = new stu_master;
-        $tableM->stu_master_user_id = $id['id'];
+        $tableM->user_id = $id['id'];
         $tableM->created_by = $admin;
         $tableM->save();
-        $star = stu_master::find(2)->user;
+        $star = stu_master::where('user_id', $id['id'])->first();
+        //$star = stu_master::find(2)->user;
     	return $star;
     	//return view('home',compact('user'))
 

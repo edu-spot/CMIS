@@ -16,7 +16,7 @@ use Notifiable;
      * @var array
      */
     protected $fillable = [
-        'stu_master_user_id', 'created_by',
+        'user_id', 'created_by',
     ];
 
     /**
@@ -31,9 +31,9 @@ use Notifiable;
 
 
 
-    public function user()
-    {
-    	return $this->hasOne(user::class);
+  //  public function user()
+  //  {
+  //  	return $this->hasOne(user::class);
 
-    }
+ //   }
 }

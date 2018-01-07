@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+
+    public function stu_master()
+    {
+        return $this->hasOne(stu_master::class);
+
+    }
+
 }

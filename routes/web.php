@@ -25,3 +25,4 @@ Route::post('adds', 'CreateStudentController@create')->name('adds');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/view', 'CreateStudentController@view')->name('view');
