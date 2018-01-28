@@ -46,7 +46,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Add Student</a></li>
+            <li><a href="/add"><i class="fa fa-circle-o"></i> Add Student</a></li>
             <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Import Students</a></li>
             <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Manage Students</a></li>
           </ul>
