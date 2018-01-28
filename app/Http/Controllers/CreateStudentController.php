@@ -57,6 +57,19 @@ class CreateStudentController extends Controller
 
     public function create(Request $data){
 
+       //  $this->validator($request->all())->validate();
+        $validator= Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if($validator ->fails()){
+            return redirect()->back()->withErrors('error enter correct data');
+        }
+
+
+
     	$table = new user;
 
     	$admin = Auth::user()->id;
