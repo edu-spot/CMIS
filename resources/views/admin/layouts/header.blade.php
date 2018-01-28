@@ -225,7 +225,11 @@
 
                 <p>
                   {{ Auth::user()->name }}
+<<<<<<< HEAD
                   <small>Member since Nov. 2012</small>
+=======
+                  <small>{{ Auth::user()->created_at }}</small>
+>>>>>>> b66d4505afb2c635579955ac63c25002facd4062
                 </p>
               </li>
               <!-- Menu Body -->

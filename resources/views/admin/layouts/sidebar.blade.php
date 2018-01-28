@@ -7,7 +7,7 @@
           <img src="{{asset('dashboard/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>{{ Auth::user()->name }}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -46,7 +46,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Add Student</a></li>
+            <li><a href="/add"><i class="fa fa-circle-o"></i> Add Student</a></li>
             <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Import Students</a></li>
             <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Manage Students</a></li>
           </ul>
