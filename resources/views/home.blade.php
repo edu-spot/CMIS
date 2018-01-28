@@ -1,1 +1,1 @@
-@extends('dashboard\layouts.app')
+@extends('admin\layouts.app')
