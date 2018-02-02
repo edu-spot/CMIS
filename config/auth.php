@@ -45,6 +45,38 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'admin-api' => [
+            'driver' => 'token',
+            'provider' => 'admins',
+        ],
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'students',
+        ],
+        'student-api' => [
+            'driver' => 'token',
+            'provider' => 'students',
+        ],
+        'employee' => [
+            'driver' => 'session',
+            'provider' => 'employees',
+        ],
+        'employee-api' => [
+            'driver' => 'token',
+            'provider' => 'employees',
+        ],
+        'department' => [
+            'driver' => 'session',
+            'provider' => 'departments',
+        ],
+        'department-api' => [
+            'driver' => 'token',
+            'provider' => 'departments',
+        ],                                
     ],
 
     /*
@@ -69,7 +101,22 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
+        ],
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => App\Student::class,
+        ],
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => App\Employee::class,
+        ],                        
+        'departments' => [
+            'driver' => 'eloquent',
+            'model' => App\Department::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
