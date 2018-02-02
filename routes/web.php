@@ -16,11 +16,11 @@ Route::get('/', function () {
 });
 
 
-Route::get('/add', function () {
-    return view('createstudent');
-})->middleware('adminmiddleware');
+// Route::get('/add', function () {
+//     return view('createstudent');
+// })->middleware('adminmiddleware');
 
-Route::post('adds', 'CreateStudentController@create')->name('adds');
+// Route::post('adds', 'CreateStudentController@create')->name('adds');
 
 Auth::routes();
 
