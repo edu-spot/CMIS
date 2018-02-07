@@ -1,0 +1,1 @@
+@extends('users_view.admin.layouts.app')

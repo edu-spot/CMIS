@@ -20,6 +20,13 @@ Route::get('/add', function () {
     return view('createstudent');
 })->middleware('adminmiddleware');
 
+
+Route::get('/future', function () {
+    return view('future');
+})->middleware('adminmiddleware');
+
+
+
 Route::post('adds', 'CreateStudentController@create')->name('adds');
 
 Auth::routes();
