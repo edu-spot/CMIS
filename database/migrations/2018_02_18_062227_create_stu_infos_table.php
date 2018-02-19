@@ -15,8 +15,8 @@ class CreateStuInfosTable extends Migration
     {
         Schema::create('stu_infos', function (Blueprint $table) {
             $table->increments('stuinfoid');
-            $table->string('stu_unique_id')->unique();
-            $table->string('stu_title');
+            $table->string('stu_unique_id')->unique()->nullable();
+            $table->string('stu_title')->nullable();
             $table->string('stu_first_name');
             $table->string('stu_middle_name');
             $table->string('stu_last_name');
@@ -28,7 +28,7 @@ class CreateStuInfosTable extends Migration
             $table->string('stu_bloodgroup');
             $table->string('stu_birthplace');
             $table->string('stu_religion');
-            $table->date('stu_admission_date');
+            $table->date('stu_admission_date')->nullable();
             // $table->longblob('stu_photo');longblob is not supported in laravel need to check for new method
             $table->string('stu_languages');
             $table->integer('stumasterid')->unsigned();

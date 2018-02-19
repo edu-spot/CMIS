@@ -69,7 +69,7 @@ class CreateStudentController extends Controller
         // if($validator ->fails()){
         //     return redirect()->back()->withErrors('error enter correct data');
         // }
-return Redirect::back()->withErrors(['Incorrect data ! Enter correct data ', 'The Message']);
+// return Redirect::back()->withErrors(['Incorrect data ! Enter correct data ', 'The Message']);
 
 
     	$table = new user;
