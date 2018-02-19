@@ -27,7 +27,11 @@ use Notifiable;
     protected $hidden = [
        
     ];
+    public function stu_info()
+    {
+        return $this->hasOne(stu_info::class);
 
+    }
 
 
 

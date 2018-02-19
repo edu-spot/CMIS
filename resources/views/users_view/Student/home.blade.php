@@ -1,4 +1,4 @@
-<!-- @extends('admin\layouts.app') -->
+@extends('users_view.admin.layouts.app')
 <!DOCTYPE html>
 <html>
 <head>
