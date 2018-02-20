@@ -141,6 +141,13 @@
             $table->timestamps();
 			
 			
+
+            class (class)
+            $table->('classid');
+            $table->('')
+
+
+
 			Course (courses)
 			
 			$table->increments('course_id');
