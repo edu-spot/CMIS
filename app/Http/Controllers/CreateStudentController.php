@@ -74,19 +74,19 @@ class CreateStudentController extends Controller
 
     	$table = new user;
 
-    	$admin = Auth::user()->id;
+    	$createdby = Auth::user()->id;
     	
     	$table->name = $data['name'];
     	$table->email = $data['email'];
         $table->password = bcrypt($data['password']);
         $table->save();
 
-        $admin = Auth::user()->id;
+        $createdby = Auth::user()->id;
 
         $id = user::where('email', $data['email'])->first();
         $tableM = new stu_master;
         $tableM->user_id = $id['id'];
-        $tableM->created_by = $admin;
+        $tableM->created_by = $createdby;
         $tableM->save();
         $idm = stu_master::where('user_id', $id['id'])->first();
 

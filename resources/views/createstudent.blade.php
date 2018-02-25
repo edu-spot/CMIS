@@ -268,7 +268,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-8">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    Create
                                 </button>
                             </div>
                         </div>

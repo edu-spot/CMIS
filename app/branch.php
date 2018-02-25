@@ -19,4 +19,14 @@ class branch extends Model
     protected $hidden = [
         
     ];
+
+
+    public function semester()
+    {
+        return $this->hasMany(semester::class);
+
+    }
+
+
+
 }

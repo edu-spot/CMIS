@@ -37,8 +37,13 @@ class CreateEmpInfosTable extends Migration
             $table->string('emp_specialization');
             $table->string('emp_experience');
             $table->integer('empmasterid')->unsigned();
+             $table->integer('created_by')->unsigned();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
 
+
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
             $table->foreign('empmasterid')->references('empid')->on('emp_masters');
 
         });

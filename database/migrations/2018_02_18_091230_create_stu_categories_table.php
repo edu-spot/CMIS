@@ -17,7 +17,7 @@ class CreateStuCategoriesTable extends Migration
             $table->increments('stucategoriesid');
             $table->string('stu_category_name');
             $table->integer('created_by')->unsigned();
-            $table->integer('updated_by')->unsigned();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('is_status');
             $table->timestamps();
 

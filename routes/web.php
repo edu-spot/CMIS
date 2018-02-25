@@ -21,12 +21,18 @@ Route::get('/add', function () {
 })->middleware('adminmiddleware');
 
 
+// Route::get('/addbranch', function () {
+//     return view('users_view/admin/addbranch');
+// })->middleware('adminmiddleware');
+Route::get('/addbranch', 'CreateBranchController@display')->name('addbranch');
+
+
 Route::get('/future', function () {
     return view('future');
 })->middleware('adminmiddleware');
 
 
-
+Route::post('addbranches', 'CreatebranchController@create')->name('addbranches');
 Route::post('adds', 'CreateStudentController@create')->name('adds');
 
 Auth::routes();

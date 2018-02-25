@@ -16,12 +16,12 @@ class CreateSemestersTable extends Migration
         Schema::create('semesters', function (Blueprint $table) {
              $table->increments('semesterid');
             $table->string('semester_name');
-           // $table->integer('classid')->unsigned();
+            $table->integer('branch_id')->unsigned();
            // $table->
             $table->integer('created_by')->unsigned();
-            $table->integer('updated_by')->unsigned();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
-
+            $table->foreign('branch_id')->references('branchid')->on('branches');
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
 

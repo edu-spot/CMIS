@@ -32,8 +32,13 @@ class CreateStuInfosTable extends Migration
             // $table->longblob('stu_photo');longblob is not supported in laravel need to check for new method
             $table->string('stu_languages');
             $table->integer('stumasterid')->unsigned();
+            $table->integer('created_by')->unsigned();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
 
+
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
             $table->foreign('stumasterid')->references('stuid')->on('stu_masters');
         });
 

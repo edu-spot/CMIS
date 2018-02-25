@@ -18,7 +18,7 @@ class CreateStuStatusesTable extends Migration
             $table->string('stu_status_name');
             $table->string('stu_status_description');
             $table->integer('created_by')->unsigned();
-            $table->integer('updated_by')->unsigned();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('is_status');
             $table->timestamps();
 
