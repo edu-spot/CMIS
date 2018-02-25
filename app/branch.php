@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class branch extends Model
 {
+     protected $primaryKey = 'branchid'; // or null
+
+    public $incrementing = false;
     //
     protected $fillable = [
         'branch_name','created_by',

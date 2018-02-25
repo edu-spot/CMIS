@@ -31,6 +31,7 @@ Route::get('/future', function () {
     return view('future');
 })->middleware('adminmiddleware');
 
+Route::get('delete/{id}','CreatebranchController@delete')->name('deleteBranch');
 
 Route::post('addbranches', 'CreatebranchController@create')->name('addbranches');
 Route::post('adds', 'CreateStudentController@create')->name('adds');

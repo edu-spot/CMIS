@@ -11,9 +11,12 @@ use Illuminate\Http\Request;
 class CreateBranchController extends Controller
 {
     
-	public function delete($value='')
+	public function delete(Request $request,$value)
 	{
-		return View::make('users_view/admin/addbranch')->with('records', $records);
+
+        $record = branch::where('branchid',$value)->first();
+        $record->delete();    
+		return redirect()->back()->with('status','Branch Deleted');
 	}
 
 

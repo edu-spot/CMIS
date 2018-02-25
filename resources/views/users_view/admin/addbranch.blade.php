@@ -55,7 +55,7 @@
 		<tr>
 			<td>{{ $rec->branchid }}</td>
 			<td>{{ $rec->branch_name }}</td>
-			<td> <a href="">Delete</a></td>
+			<td> <a href="delete/{{$rec->branchid}}">Delete</a></td>
 		</tr>
 
 	@endforeach
