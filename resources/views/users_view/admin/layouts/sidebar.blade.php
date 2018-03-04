@@ -54,7 +54,7 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Cariculam Structure</span>
+            <i class="fa fa-edit"></i> <span>Curriculum Structure</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -62,7 +62,8 @@
           <ul class="treeview-menu">
             <li><a href="/addbranch"><i class="fa fa-circle-o"></i> Manage Branch</a></li>
             <li><a href="/addsemester"><i class="fa fa-circle-o"></i> Manage Semester</a></li>
-            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Manage Class</a></li>
+            <li><a href="/addsubject"><i class="fa fa-circle-o"></i> Manage Subject</a></li>
+            <li><a href="/addsclass"><i class="fa fa-circle-o"></i> Manage Class</a></li>
           </ul>
         </li>
 

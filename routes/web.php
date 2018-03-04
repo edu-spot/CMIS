@@ -43,6 +43,17 @@ Route::post('addsemesters', 'CreateSemesterController@create')->name('addsemeste
 
 
 
+Route::get('/addsubject', 'CreateSubjectController@display')->name('addsubject')->middleware('adminmiddleware');
+Route::get('subjectdelete/{id}','CreateSubjectController@delete')->name('deletesubject');
+Route::post('addsubjects', 'CreateSubjectController@create')->name('addsubjects');
+
+
+
+Route::get('/addsclass', 'CreateSclassController@display')->name('addsclass')->middleware('adminmiddleware');
+Route::get('sclassdelete/{id}','CreateSclassController@delete')->name('deletesclass');
+Route::post('addsclasss', 'CreateSclassController@create')->name('addsclasss');
+
+
 
 
 

@@ -6,6 +6,7 @@ use View;
 use DB;
 use App\branch;
 use App\sclass;
+use App\subject;
 use App\semester;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class CreateSemesterController extends Controller
     public function delete(Request $request,$value)
 	{
 
-        $stall = sclass::where('semester_id', $value)->exists();
+        $stall = subject::where('semester_id', $value)->exists();
 
         if($stall == '0')
         {   
