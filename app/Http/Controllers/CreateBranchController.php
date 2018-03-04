@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use View;
 use DB;
 use App\branch;
+use App\semester;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,22 @@ class CreateBranchController extends Controller
 	public function delete(Request $request,$value)
 	{
 
-        $record = branch::where('branchid',$value)->first();
-        $record->delete();    
-		return redirect()->back()->with('status','Branch Deleted');
+        $stall = semester::where('branch_id', $value)->exists();
+
+        if($stall == '0')
+        {   
+           $record = branch::where('branchid',$value)->first();
+            $state = $record->delete(); 
+          if($state == 'success')
+            {   
+		      return redirect()->back()->with('status','Branch Deleted');
+            }
+    }
+
+    else 
+        {
+         return redirect()->back()->with('err','Branch cannot be deleted it contains semester');   
+        }
 	}
 
 

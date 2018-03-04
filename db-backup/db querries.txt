@@ -1,0 +1,20 @@
+INSERT INTO `semesters` (`semesterid`, `semester_name`, `branch_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES ('10', 'Sem 2 IT Branch', '2', '2', NULL, '2018-03-04 00:04:00', NULL);
+
+INSERT INTO `semesters` (`semesterid`, `semester_name`, `branch_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES ('11', 'Sem 3 IT Branch', '2', '2', NULL, '2018-03-04 00:04:00', NULL);
+
+INSERT INTO `semesters` (`semesterid`, `semester_name`, `branch_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES ('12', 'Sem 4 IT Branch', '2', '2', NULL, '2018-03-04 00:04:00', NULL);
+
+INSERT INTO `semesters` (`semesterid`, `semester_name`, `branch_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES ('13', 'Sem 5 IT Branch', '2', '2', NULL, '2018-03-04 00:04:00', NULL);
+
+INSERT INTO `semesters` (`semesterid`, `semester_name`, `branch_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES ('14', 'Sem 6 IT Branch', '2', '2', NULL, '2018-03-04 00:04:00', NULL);
+
+INSERT INTO `semesters` (`semesterid`, `semester_name`, `branch_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES ('15', 'Sem 7 IT Branch', '2', '2', NULL, '2018-03-04 00:04:00', NULL);
+
+INSERT INTO `semesters` (`semesterid`, `semester_name`, `branch_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES ('16', 'Sem 8 IT Branch', '2', '2', NULL, '2018-03-04 00:04:00', NULL);
+
+
+
+
+
+
+INSERT INTO `semesters` (`semesterid`, `semester_name`, `branch_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES ('17', 'Sem 1 ELEX Branch', '3', '2', '2', '2018-03-04 00:00:00', NULL);

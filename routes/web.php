@@ -24,16 +24,28 @@ Route::get('/add', function () {
 // Route::get('/addbranch', function () {
 //     return view('users_view/admin/addbranch');
 // })->middleware('adminmiddleware');
-Route::get('/addbranch', 'CreateBranchController@display')->name('addbranch');
-
 
 Route::get('/future', function () {
     return view('future');
 })->middleware('adminmiddleware');
 
-Route::get('delete/{id}','CreatebranchController@delete')->name('deleteBranch');
 
+
+
+Route::get('/addbranch', 'CreateBranchController@display')->name('addbranch')->middleware('adminmiddleware');
+Route::get('branchdelete/{id}','CreatebranchController@delete')->name('deleteBranch');
 Route::post('addbranches', 'CreatebranchController@create')->name('addbranches');
+
+Route::get('/addsemester', 'CreateSemesterController@display')->name('addsemster')->middleware('adminmiddleware');
+Route::get('semesterdelete/{id}','CreateSemesterController@delete')->name('deletesemester');
+Route::post('addsemesters', 'CreateSemesterController@create')->name('addsemesters');
+
+
+
+
+
+
+
 Route::post('adds', 'CreateStudentController@create')->name('adds');
 
 Auth::routes();

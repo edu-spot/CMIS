@@ -4,19 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class subject extends Model
+class sclass extends Model
 {
-    
 
 
 
 
-	protected $primaryKey = 'subjectid'; // or null
+
+
+
+	protected $primaryKey = 'sclassid'; // or null
 
     //public $incrementing = false;
     //
     protected $fillable = [
-       'sub_name','sub_alais','sub_code','created_by','semester_id',
+        'sclass_name','created_by','semester_id',
     ];
 
     /**
@@ -29,15 +31,18 @@ class subject extends Model
     ];
 
 
+   
 
 
 
 
 
 
-   public function semester()
+
+
+    public function stu_master()
     {
-        return $this->belongsTO(semester::class);
+        return $this->hasMany(stu_master::class);
 
     }
 }

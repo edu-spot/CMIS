@@ -19,13 +19,13 @@ class CreateStuMastersTable extends Migration
 			$table->integer('created_by')->unsigned();
 			$table->tinyInteger('is_status')->default('0');
 			$table->integer('updated_by')->unsigned()->nullable();
-			$table->integer('class_id')->unsigned()->nullable();
+			$table->integer('sclass_id')->unsigned()->nullable();
 			 // $table->integer('branch_id')->unsigned();
 			 // $table->integer('semester_id')->unsigned();
 			$table->timestamps();
 		});
 		 Schema::table('stu_masters', function($table) {
-		$table->foreign('class_id')->references('classid')->on('classes');
+		$table->foreign('sclass_id')->references('sclassid')->on('sclasses');
 		// $table->foreign('branch_id')->references('branchid')->on('branches');
 		// $table->foreign('semester_id')->references('semesterid')->on('semesters');
 		$table->foreign('user_id')->references('id')->on('users');

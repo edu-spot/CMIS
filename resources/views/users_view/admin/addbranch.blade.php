@@ -7,6 +7,13 @@
         {{ session('status') }}
     </div>
 @endif
+
+@if (session('err'))
+    <div class="alert alert-error">
+        {{ session('err') }}
+    </div>
+@endif
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -45,20 +52,26 @@
 
 <table class="table table-striped">
 	<tr>
-		<td>Branch ID</td>
+		<td>Number</td>
 		<td>Branch Name</td>
 		<td>Actions</td>
 	</tr>
+@php
+    $i=1
+    @endphp
 
 	@foreach ($records as $rec)
-{{$res=0}}
-		<tr>
-			<td>{{ $rec->branchid }}</td>
-			<td>{{ $rec->branch_name }}</td>
-			<td> <a href="delete/{{$rec->branchid}}">Delete</a></td>
-		</tr>
 
-	@endforeach
+		<tr>
+			<td> @php echo $i @endphp </td>
+			<td>{{ $rec->branch_name }}</td>
+			<td> <a href="branchdelete/{{$rec->branchid}}">Delete</a></td>
+		</tr>
+        @php
+        $i=$i+1
+
+    @endphp
+    @endforeach
 </table>
 
 

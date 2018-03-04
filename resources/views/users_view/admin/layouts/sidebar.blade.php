@@ -51,6 +51,21 @@
             <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Manage Students</a></li>
           </ul>
         </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-edit"></i> <span>Cariculam Structure</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/addbranch"><i class="fa fa-circle-o"></i> Manage Branch</a></li>
+            <li><a href="/addsemester"><i class="fa fa-circle-o"></i> Manage Semester</a></li>
+            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Manage Class</a></li>
+          </ul>
+        </li>
+
         
       </ul>
     </section>
