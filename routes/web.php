@@ -53,6 +53,9 @@ Route::get('/addsclass', 'CreateSclassController@display')->name('addsclass')->m
 Route::get('sclassdelete/{id}','CreateSclassController@delete')->name('deletesclass');
 Route::post('addsclasss', 'CreateSclassController@create')->name('addsclasss');
 
+Route::get('/timeslot', 'SetTimeslotController@display')->name('timeslot')->middleware('adminmiddleware');
+// Route::get('sclassdelete/{id}','CreateSclassController@delete')->name('deletesclass');
+// Route::post('addsclasss', 'CreateSclassController@create')->name('addsclasss');
 
 
 
