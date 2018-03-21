@@ -18,11 +18,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                 <div class="panel-heading">Timeslot Management</div>
+                 <div class="panel-heading">Take Attendene</div>
 
 
                  <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('timeslot') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('takeatt') }}">
                         {{ csrf_field() }}
 
 

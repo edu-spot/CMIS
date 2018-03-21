@@ -44,7 +44,7 @@
 
                         
                          <div class="form-group{{ $errors->has('branch_id') ? ' has-error' : '' }}">
-                            <label for="branch_id" class="col-md-4 control-label">Brabch</label>
+                            <label for="branch_id" class="col-md-4 control-label">Branch</label>
                        
                             <div class="col-md-6">
                              <select class="form-control" name="branch_id">
@@ -64,6 +64,7 @@
                                 </button>
                             </div>
                         </div>
+                    </div>
 
 
 

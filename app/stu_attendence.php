@@ -4,14 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class timeslot extends Model
+class stu_attendence extends Model
 {
+
     protected $primaryKey = 'id'; // or null
 
     public $incrementing = false;
     //
     protected $fillable = [
-        'timetype','time','created_by','duration',
+        'attdate','timeslot_id','branch_id','semester_id','sclass_id','stumaster_id','subject_id','status','created_by','duration',
     ];
 
     /**

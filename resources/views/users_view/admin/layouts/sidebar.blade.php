@@ -67,6 +67,22 @@
           </ul>
         </li>
 
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-edit"></i> <span>Attendence Management</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/timeslot"><i class="fa fa-circle-o"></i> Manage Time Slots of lectures</a></li>
+            <li><a href="/takeatt"><i class="fa fa-circle-o"></i> Manage Attendence</a></li>
+            <!-- <li><a href="/addsubject"><i class="fa fa-circle-o"></i> Manage Subject</a></li>
+            <li><a href="/addsclass"><i class="fa fa-circle-o"></i> Manage Class</a></li> -->
+          </ul>
+        </li>
+
         
       </ul>
     </section>

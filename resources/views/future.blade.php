@@ -1,5 +1,5 @@
-
+@extends('users_view.admin.layouts.app')
 
 @section('content')
-<h1>Future scope</h1>
+<h1>Adding this functionality soon</h1>
 @endsection

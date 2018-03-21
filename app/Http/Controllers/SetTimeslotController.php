@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use View;
 use DB;
-use App\branch;
-use App\sclass;
-use App\subject;
-use App\semester;
+use App\timeslot;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -45,8 +42,7 @@ class SetTimeslotController extends Controller
 	public function display()
 	{
 		$records = DB::table('timeslots')->get();
-		$brn = DB::table('branches')->get();
-    return View::make('users_view/admin/settimeslot')->with('records', $records)->with('brn' , $brn);
+    return View::make('users_view/admin/settimeslot')->with('records', $records);
 	}
 
 
@@ -56,13 +52,42 @@ class SetTimeslotController extends Controller
     public function create(Request $data){
 
 
+    	
 
-    	$table= new semester;
-    	$table->semester_name = $data['semestername'];
-    	$table->branch_id = $data['branch_id'];
+
+    	$table= new timeslot;
+    	$table->time = '9:00 to 10:00';
+    	$table->timetype = 'l';
+    	$table->duration = '1';
     	$createdby = Auth::user()->id;
     	$table->created_by = $createdby;
     	$table->save();
+
+    	$table= new timeslot;
+    	$table->time = '10:00 to 11:00';
+    	$table->timetype = 'l';
+    	$table->duration = '1';
+    	$createdby = Auth::user()->id;
+    	$table->created_by = $createdby;
+    	$table->save();
+
+    	$table= new timeslot;
+    	$table->time = '11:20 to 12:20';
+    	$table->timetype = 'l';
+    	$table->duration = '1';
+    	$createdby = Auth::user()->id;
+    	$table->created_by = $createdby;
+    	$table->save();
+
+
+    	$table= new timeslot;
+    	$table->time = '12:20 to 1:20';
+    	$table->timetype = 'l';
+    	$table->duration = '1';
+    	$createdby = Auth::user()->id;
+    	$table->created_by = $createdby;
+    	$table->save();
+
 
 
 
