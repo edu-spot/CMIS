@@ -58,6 +58,9 @@ Route::get('deletetimeslot/{id}','SetTimeslotController@delete')->name('deleteti
 Route::post('timeslot', 'SetTimeslotController@create')->name('timeslot')->middleware('adminmiddleware');
 
 Route::get('/takeatt', 'CreateStudentAttendenceController@display')->name('takeatt')->middleware('adminmiddleware');
+Route::get('/loaditems', 'CreateStudentAttendenceController@load')->name('loaditems')->middleware('adminmiddleware');
+Route::post('/takeattd', 'CreateStudentAttendenceController@create')->name('takeattd')->middleware('adminmiddleware');
+
 
 
 Route::post('adds', 'CreateStudentController@create')->name('adds');
