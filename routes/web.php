@@ -62,6 +62,11 @@ Route::post('/takeattd', 'CreateStudentAttendenceController@create')->name('take
 
 Route::get('/loadsemester', 'CreateStudentAttendenceController@loadsemester')->name('loadsemester')->middleware('adminmiddleware');
 Route::get('/loadsclass', 'CreateStudentAttendenceController@loadsclass')->name('loadsclass')->middleware('adminmiddleware');
+Route::get('/loadsubject', 'CreateStudentAttendenceController@loadsubject')->name('loadsubject')->middleware('adminmiddleware');
+
+
+Route::post('/stoatt', 'CreateStudentAttendenceController@next')->name('stoatt')->middleware('adminmiddleware');
+Route::post('/storeatt', 'CreateStudentAttendenceController@sto')->name('storeatt')->middleware('adminmiddleware');
 
 
 

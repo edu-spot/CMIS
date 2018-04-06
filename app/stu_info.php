@@ -14,6 +14,9 @@ class stu_info extends Model
      *
      * @var array
      */
+
+    protected $primaryKey = 'stuinfoid';
+
     protected $fillable = [
         'user_id', 'created_by','stu_first_name','stu_middle_name','stu_last_name','stu_mother_name','stu_gender','stu_dob','stu_email_id','stu_mobile_no','stu_bloodgroup','stu_birthplace','stu_religion','stu_languages','stumasterid',
     ];

@@ -15,6 +15,11 @@ use Notifiable;
      *
      * @var array
      */
+
+    protected $primaryKey = 'stuid';
+
+
+
     protected $fillable = [
         'user_id', 'created_by',
     ];

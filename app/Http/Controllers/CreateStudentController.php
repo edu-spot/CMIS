@@ -103,7 +103,7 @@ class CreateStudentController extends Controller
         $tableI->stu_birthplace = $data['birthplace'];
         $tableI->stu_religion = $data['religion'];
         $tableI->stu_languages = $data['language'];
-
+        $tableI->created_by = $createdby;
         $tableI->stumasterid = $idm['stuid'];
         $tableI->save();
 
