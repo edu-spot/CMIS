@@ -12,12 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 
 Route::get('/add', function () {
-    return view('createstudent');
+	return view('createstudent');
 })->middleware('adminmiddleware');
 
 
@@ -26,7 +26,7 @@ Route::get('/add', function () {
 // })->middleware('adminmiddleware');
 
 Route::get('/future', function () {
-    return view('future');
+	return view('future');
 })->middleware('adminmiddleware');
 
 
@@ -68,7 +68,9 @@ Route::get('/loadsubject', 'CreateStudentAttendenceController@loadsubject')->nam
 Route::post('/stoatt', 'CreateStudentAttendenceController@next')->name('stoatt')->middleware('adminmiddleware');
 Route::post('/storeatt', 'CreateStudentAttendenceController@sto')->name('storeatt')->middleware('adminmiddleware');
 
+Route::get('/viewatt', 'CreateStudentAttendenceController@viewa')->name('viewatt')->middleware('adminmiddleware');
 
+Route::post('/vatt', 'CreateStudentAttendenceController@viewatt')->name('vatt')->middleware('adminmiddleware');
 
 
 Route::post('adds', 'CreateStudentController@create')->name('adds');

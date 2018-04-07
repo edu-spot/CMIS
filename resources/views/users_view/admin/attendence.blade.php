@@ -201,7 +201,7 @@ $(document).on('change','.semester',function(){
       if(ressubject.length == '0'){
         $('select[name="subject"]').empty();
         
-        $('select[name="subject"]').append('<option value="0">No class found</option>');
+        $('select[name="subject"]').append('<option value="0">No Subject found</option>');
         
       }else{  
        $('select[name="subject"]').empty();

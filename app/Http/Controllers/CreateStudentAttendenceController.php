@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use View;
 use DB;
 use App\semester;
+use App\attcoll;
 use App\sclass;
 use App\stu_master;
 use App\stu_attendence;
@@ -71,14 +72,25 @@ class CreateStudentAttendenceController extends Controller
 
 
 		
+		$test = DB::table('attcolls')->select('id')->where([
+			['timeslot_id', '=', $data['timeslot']],
+			['sclass_id', '=', $data['sclass']],
+			['attdate', '=', $data['date']],
+		])->first();
 
-		$students = DB::table('stu_masters')->select('stuid','stu_first_name','stu_last_name')->join('stu_infos','stumasterid','=','stuid')->where('sclass_id' ,'=', $data->sclass )->get();
+		if($test)
+		{
+			//return redirect()->back();
+			return redirect()->back()->with('err','Attendence already taken for that day and time');
+		}else{
+			$students = DB::table('stu_masters')->select('stuid','stu_first_name','stu_last_name')->join('stu_infos','stumasterid','=','stuid')->where('sclass_id' ,'=', $data->sclass )->get();
 
 		//return $data->all();
 
 
-		return View::make('users_view/admin/storeattendence')->with('data',$data)->with('students',$students);
+			return View::make('users_view/admin/storeattendence')->with('data',$data)->with('students',$students);
 
+		}
 
 
 
@@ -89,10 +101,34 @@ class CreateStudentAttendenceController extends Controller
 	public function sto(Request $data)
 	{
 		// return $data->all();
+		$createdby = Auth::user()->id;
 		
-		$i = $data->count;
+		$tablea = new attcoll;
+		$tablea->attdate = $data['date'];
+		$tablea->timeslot_id = $data['timeslot'];
+		$tablea->branch_id = $data['branch'];
+		$tablea->semester_id = $data['semester'];
+		$tablea->sclass_id = $data['sclass'];
+		$tablea->subject_id = $data['subject'];
+		$tablea->created_by = $createdby;
+		$tablea->save();
+
+
+		$attid = DB::table('attcolls')->select('id')
+		->where([
+			['timeslot_id', '=', $data['timeslot']],
+			['sclass_id', '=', $data['sclass']],
+			['subject_id', '=', $data['subject']],
+			['attdate', '=', $data['date']],
+
+		])->first();
+
+
+		// $a=$attid->id;
+		$f = $data->count;
+		$f = $f+1; 
 		$x = '1000';
-		for ( $i = 0; $i < $data->count; $i++) {
+		for ( $i = 1; $i < $f; $i++) {
 			
 			$table = new stu_attendence;
 
@@ -104,7 +140,7 @@ class CreateStudentAttendenceController extends Controller
 			}else{
 				$table->status = '0';
 			}
-
+			$table->attcoll_id = $attid->id;
 			$table->timeslot_id = $data['timeslot'];
 			$table->branch_id = $data['branch'];
 			$table->semester_id = $data['semester'];
@@ -124,6 +160,55 @@ class CreateStudentAttendenceController extends Controller
 		return View::make('users_view/admin/attendence')->with('status','Attendence Added Successfully')->with('branchs',$branchs)->with('timeslots',$timeslots);
 
 	}
+
+
+
+	public function viewa()
+	{
+
+		$branchs = branch::all();
+		$timeslots = timeslot::all();
+		//return view('users_view.admin.attendence', compact('records'));
+		return View::make('users_view/admin/viewatt')->with('branchs',$branchs)->with('timeslots',$timeslots);
+	}
+
+
+	public function viewatt(Request $data)
+	{
+		$branchs = branch::all();
+		$timeslots = timeslot::all();
+
+		$attid = DB::table('attcolls')->select('id')
+		->where([
+			['timeslot_id', '=', $data['timeslot']],
+			['sclass_id', '=', $data['sclass']],
+			['subject_id', '=', $data['subject']],
+			['attdate', '=', $data['date']],
+
+		])->first()->id;
+		if($attid)
+		{
+			
+			$source = DB::table('stu_attendences')->select('stumaster_id','status','stu_first_name','stu_last_name')->join('stu_infos','stumasterid','=','stumaster_id')->where([['attcoll_id','=', $attid],
+				['timeslot_id', '=', $data['timeslot']],
+				['sclass_id', '=', $data['sclass']],
+				['subject_id', '=', $data['subject']],
+				['attdate', '=', $data['date']]
+			])->get();
+			// return $source->all();
+
+			return View::make('users_view/admin/attview')->with('data',$data)->with('source',$source);        
+		}
+		else {
+			
+		//return view('users_view.admin.attendence', compact('records'));
+			return View::make('users_view/admin/viewatt')->with('status','Cant Find The Record')->with('branchs',$branchs)->with('timeslots',$timeslots);
+
+		}
+	}
+
+
+
 
 
 }
