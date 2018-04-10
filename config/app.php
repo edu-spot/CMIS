@@ -141,6 +141,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Cyberduck\LaravelExcel\ExcelServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,

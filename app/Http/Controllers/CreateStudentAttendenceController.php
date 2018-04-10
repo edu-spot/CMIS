@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel;
 use App\Http\Controllers\Controller;
-//use Maatwebsite\Excel\Facades\Excel;
+// use Maatwebsite\Excel\Concerns\FromQuery;
 use View;
 use DB;
 use App\semester;
@@ -16,32 +16,81 @@ use App\branch;
 use App\timeslot;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Excel;
+// use Maatwebsite\Excel\Concerns\Exportable;
+use session;
+use Cyberduck\LaravelExcel\ExporterFacade;
+use Exporter;
+use Cyberduck\LaravelExcel\ExcelServiceProvider;
+
+use Illuminate\Database\Eloquent\Model;
+use Cyberduck\LaravelExcel\Contract\SerialiserInterface;
+
+// class InvoicesExport implements FromQuery
+// {
+   //  public function __construct(Request $req)
+   //  {
+   //      $this->req = $req;
+   //  }
+
+   //  public function query()
+   //  {
+   //      return DB::table('stu_attendences')->select('stumaster_id','stu_first_name','stu_last_name','status')->join('stu_infos','stumasterid','=','stumaster_id')->where([['branch_id', '=', $req['branch']],
+			// 	['sclass_id', '=', $req['sclass']],
+			// 	['semester_id', '=', $req['semester']],
+			// ])->get();
+   //  }
+// }
+
+// class InvoicesExport implements FromQuery
+// {
+
+// use Exportable;
 
 
 
-class InvoicesExport implements FromCollection
+
+
+// protected $sclasss;
+// 	public function __construct(int $sclasss)
+//     {
+// // return $sclass; 
+//         $this->sclasss = $sclasss ;
+
+
+//     }
+
+//     public function query()
+//     {	
+//     	//return $this->sclass;     	
+//         return DB::table('stu_attendences')->select('stumaster_id','stu_first_name','stu_last_name','status')->join('stu_infos','stumasterid','=','stumaster_id')->where('sclass_id' ,'=', $this->sclasss)->get();
+//     }
+// }
+class customserialiser implements SerialiserInterface
 {
-    public function __construct(InvoicesRepository $req)
+
+	public function getData(Model $data)
     {
-        $this->req = $req;
+        $row = [];
+
+        $row[] = $data->field1;
+        $row[] = $data->relationship->field2;
+
+        return $row;
     }
 
-    public function collection()
+    public function getHeaderRow()
     {
-        return DB::table('stu_attendences')->select('stumaster_id','stu_first_name','stu_last_name','status')->join('stu_infos','stumasterid','=','stumaster_id')->where([['branch_id', '=', $req['branch']],
-				['sclass_id', '=', $req['sclass']],
-				['semester_id', '=', $req['semester']],
-			])->get();
+        return [
+            'Field 1',
+            'Field 2 (from a relationship)'
+        ];
     }
 }
 
 
-
-
-
-class CreateStudentAttendenceController extends Controller
+class CreateStudentAttendenceController extends Controller 
 {
+// use Exporter;
 	public function display()
 	{
 		 // $records = DB::table('branches')->get();
@@ -247,20 +296,33 @@ class CreateStudentAttendenceController extends Controller
 	public function downreturn(Request $req)
 	{
 		//return $req;
-		$type= 'xls';
+		//$sclass= $req->sclass;
+
+//return $sclass;
+		$source = DB::table('stu_attendences')->select('stumaster_id','stu_first_name','stu_last_name','attdate','status')->join('stu_infos','stumasterid','=','stumaster_id')->where([['branch_id', '=', $req['branch']],
+			['sclass_id', '=', $req['sclass']],
+			['semester_id', '=', $req['semester']],
+		])->get();
 
 
-		// $source = DB::table('stu_attendences')->select('stumaster_id','stu_first_name','stu_last_name','status')->join('stu_infos','stumasterid','=','stumaster_id')->where([['branch_id', '=', $req['branch']],
-		// 		['sclass_id', '=', $req['sclass']],
-		// 		['semester_id', '=', $req['semester']],
-		// 	])->get();
+
+		//return Exporter::make('Excel')->load($source)->stream('att.xlsx'); //working line very usefull 
+		$serialiser = new Customserialiser();
+		$excel = Exporter::make('Excel');
+		$excel->load($source);
+		$excel->setSerialiser($serialiser);
+		return $excel->stream('att.xlsx');
 
 
 
 
-		//return $source;
 
-		    return Excel::download( $req, 'invoices.xlsx');
+
+
+		// return $source;
+
+		    // return Excel::download( $req, 'invoices.xlsx');
+		    // return (new InvoicesExport($req->sclass))->download('invoices.csv');
 
 
 		// return Excel::download('attendence', function($excel) use ($source) {
