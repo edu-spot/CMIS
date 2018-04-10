@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Http\Controllers\Controller;
+//use Maatwebsite\Excel\Facades\Excel;
 use View;
 use DB;
 use App\semester;
@@ -14,6 +16,30 @@ use App\branch;
 use App\timeslot;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Excel;
+
+
+
+class InvoicesExport implements FromCollection
+{
+    public function __construct(InvoicesRepository $req)
+    {
+        $this->req = $req;
+    }
+
+    public function collection()
+    {
+        return DB::table('stu_attendences')->select('stumaster_id','stu_first_name','stu_last_name','status')->join('stu_infos','stumasterid','=','stumaster_id')->where([['branch_id', '=', $req['branch']],
+				['sclass_id', '=', $req['sclass']],
+				['semester_id', '=', $req['semester']],
+			])->get();
+    }
+}
+
+
+
+
+
 class CreateStudentAttendenceController extends Controller
 {
 	public function display()
@@ -209,6 +235,41 @@ class CreateStudentAttendenceController extends Controller
 
 
 
+	public function downatt()
+	{
 
+		$branchs = branch::all();
+		//return view('users_view.admin.attendence', compact('records'));
+		return View::make('users_view/admin/saveatt')->with('branchs',$branchs);
+	}
+
+
+	public function downreturn(Request $req)
+	{
+		//return $req;
+		$type= 'xls';
+
+
+		// $source = DB::table('stu_attendences')->select('stumaster_id','stu_first_name','stu_last_name','status')->join('stu_infos','stumasterid','=','stumaster_id')->where([['branch_id', '=', $req['branch']],
+		// 		['sclass_id', '=', $req['sclass']],
+		// 		['semester_id', '=', $req['semester']],
+		// 	])->get();
+
+
+
+
+		//return $source;
+
+		    return Excel::download( $req, 'invoices.xlsx');
+
+
+		// return Excel::download('attendence', function($excel) use ($source) {
+		// 	$excel->sheet('mySheet', function($sheet) use ($source)
+	 //        {
+		// 		$sheet->fromArray($source);
+	 //        });
+		// })->download($type);
+
+	}
 
 }

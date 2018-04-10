@@ -75,7 +75,9 @@ Route::post('/vatt', 'CreateStudentAttendenceController@viewatt')->name('vatt')-
 
 Route::post('adds', 'CreateStudentController@create')->name('adds');
 
-
+Route::post('/downatt', 'CreateStudentAttendenceController@downreturn')->name('downatt')->middleware('adminmiddleware');
+Route::get('/downatt', 'CreateStudentAttendenceController@downatt')->name('downatt')->middleware('adminmiddleware');
+ 
 
 
 Auth::routes();
