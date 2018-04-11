@@ -90,9 +90,8 @@ class SetTimeslotController extends Controller
 
 
 
-
-    	return redirect('/addsemester')->with('status', 'Semester Added');
-
+$records = DB::table('timeslots')->get();
+    return View::make('users_view/admin/settimeslot')->with('records', $records)->with('status','Timeslots of 1 hour Added');
 
 
 

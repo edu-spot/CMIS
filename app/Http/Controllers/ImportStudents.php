@@ -101,7 +101,7 @@ class ImportStudents extends Controller
 
  // $source = DB::table('stu_masters')->select('stu_first_name','stu_middle_name','stu_last_name','stu_mother_name','stu_gender','stu_dob','stu_email_id','stu_mobile_no','stu_bloodgroup','stu_birthplace','stu_religion','stu_languages','sclass_id')->join('stu_infos','stumasterid','=','stuid')->get();  //export all students
 			}
-			return back();
+			return back()->with('status', 'Students Added');
 
 		}
 	}
