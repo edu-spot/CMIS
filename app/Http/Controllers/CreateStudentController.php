@@ -86,6 +86,7 @@ class CreateStudentController extends Controller
         $id = user::where('email', $data['email'])->first();
         $tableM = new stu_master;
         $tableM->user_id = $id['id'];
+        $tableM->sclass_id=$data['sclass_id'];
         $tableM->created_by = $createdby;
         $tableM->save();
         $idm = stu_master::where('user_id', $id['id'])->first();

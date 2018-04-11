@@ -65,27 +65,6 @@ use Cyberduck\LaravelExcel\Contract\SerialiserInterface;
 //         return DB::table('stu_attendences')->select('stumaster_id','stu_first_name','stu_last_name','status')->join('stu_infos','stumasterid','=','stumaster_id')->where('sclass_id' ,'=', $this->sclasss)->get();
 //     }
 // }
-class customserialiser implements SerialiserInterface
-{
-
-	public function getData(Model $data)
-    {
-        $row = [];
-
-        $row[] = $data->field1;
-        $row[] = $data->relationship->field2;
-
-        return $row;
-    }
-
-    public function getHeaderRow()
-    {
-        return [
-            'Field 1',
-            'Field 2 (from a relationship)'
-        ];
-    }
-}
 
 
 class CreateStudentAttendenceController extends Controller 
@@ -299,19 +278,17 @@ class CreateStudentAttendenceController extends Controller
 		//$sclass= $req->sclass;
 
 //return $sclass;
+
+// $source = DB::table('stu_masters')->select('stu_first_name','stu_middle_name','stu_last_name','stu_mother_name','stu_gender','stu_dob','stu_email_id','stu_mobile_no','stu_bloodgroup','stu_birthplace','stu_religion','stu_languages','sclass_id')->join('stu_infos','stumasterid','=','stuid')->get();  //export all students
+
 		$source = DB::table('stu_attendences')->select('stumaster_id','stu_first_name','stu_last_name','attdate','status')->join('stu_infos','stumasterid','=','stumaster_id')->where([['branch_id', '=', $req['branch']],
 			['sclass_id', '=', $req['sclass']],
 			['semester_id', '=', $req['semester']],
-		])->get();
+		])->get();  //working code
 
 
 
-		//return Exporter::make('Excel')->load($source)->stream('att.xlsx'); //working line very usefull 
-		$serialiser = new Customserialiser();
-		$excel = Exporter::make('Excel');
-		$excel->load($source);
-		$excel->setSerialiser($serialiser);
-		return $excel->stream('att.xlsx');
+		return Exporter::make('Excel')->load($source)->stream('att.csv'); //working line very usefull 
 
 
 

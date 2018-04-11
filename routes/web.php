@@ -77,7 +77,8 @@ Route::post('adds', 'CreateStudentController@create')->name('adds');
 
 Route::post('/downatt', 'CreateStudentAttendenceController@downreturn')->name('downatt')->middleware('adminmiddleware');
 Route::get('/downatt', 'CreateStudentAttendenceController@downatt')->name('downatt')->middleware('adminmiddleware');
- 
+Route::post('/importstu', 'ImportStudents@insert')->name('importstu')->middleware('adminmiddleware'); 
+Route::get('/importstu', 'ImportStudents@display')->name('importstu')->middleware('adminmiddleware'); 
 
 
 Auth::routes();

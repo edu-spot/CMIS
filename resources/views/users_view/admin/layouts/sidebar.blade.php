@@ -47,8 +47,8 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="/add"><i class="fa fa-circle-o"></i> Add Student</a></li>
-          <li><a href="/future"><i class="fa fa-circle-o"></i> Import Students</a></li>
-          <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Manage Students</a></li>
+          <li><a href="/importstu"><i class="fa fa-circle-o"></i> Import Students</a></li>
+          <li><a href="/future"><i class="fa fa-circle-o"></i> Manage Students</a></li>
         </ul>
       </li>
 
@@ -79,7 +79,7 @@
           <li><a href="/timeslot"><i class="fa fa-circle-o"></i> Manage Time Slots of lectures</a></li>
           <li><a href="/takeatt"><i class="fa fa-circle-o"></i> Manage Attendence</a></li>
           <li><a href="/viewatt"><i class="fa fa-circle-o"></i> View Attendence</a></li>
-          {{-- <li><a href="/addsclass"><i class="fa fa-circle-o"></i> Manage Class</a></li> --}}
+          <li><a href="/downatt"><i class="fa fa-circle-o"></i> Download Attendence</a></li>
         </ul>
       </li>
 
