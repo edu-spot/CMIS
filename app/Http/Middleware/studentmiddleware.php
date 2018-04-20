@@ -15,13 +15,13 @@ class studentmiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-   public function handle($request, Closure $next)
+    public function handle($request, Closure $next)
     {
-         if ((Auth::user() &&  Auth::user()->user_type == 'S' ) || (Auth::user() &&  Auth::user()->user_type == 'A' ))
-       {
+       if ((Auth::user() &&  Auth::user()->user_type == 'S' ))
+         {
             return $next($request);
-     }
+        }
 
-    return redirect('/');
+        return redirect('/');
     }
 }
