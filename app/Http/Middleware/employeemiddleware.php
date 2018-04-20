@@ -3,6 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
+use App\user;
+
 
 class employeemiddleware
 {
@@ -15,7 +18,7 @@ class employeemiddleware
      */
     public function handle($request, Closure $next)
     {
-         if ((Auth::user() &&  Auth::user()->user_type == 'E' )|| (Auth::user() &&  Auth::user()->user_type == 'A' ))
+         if ((Auth::user() &&  Auth::user()->user_type == 'E' ) || (Auth::user() &&  Auth::user()->user_type == 'A' ))
        {
             return $next($request);
      }

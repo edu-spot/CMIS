@@ -32,7 +32,7 @@ Route::get('/future', function () {
 
 
 
-Route::get('/addbranch', 'CreateBranchController@display')->name('addbranch')->middleware('adminmiddleware');
+Route::get('/addbranch', 'CreateBranchController@display')->name('addbranch')->middleware('employeemiddleware');
 Route::get('branchdelete/{id}','CreatebranchController@delete')->name('deleteBranch')->middleware('adminmiddleware');
 Route::post('addbranches', 'CreatebranchController@create')->name('addbranches')->middleware('adminmiddleware');
 
