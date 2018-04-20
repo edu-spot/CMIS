@@ -27,7 +27,7 @@ Route::get('/add', function () {
 
 Route::get('/future', function () {
 	return view('future');
-})->middleware('adminmiddleware');
+});
 
 
 
@@ -79,6 +79,10 @@ Route::post('/downatt', 'CreateStudentAttendenceController@downreturn')->name('d
 Route::get('/downatt', 'CreateStudentAttendenceController@downatt')->name('downatt')->middleware('adminmiddleware');
 Route::post('/importstu', 'ImportStudents@insert')->name('importstu')->middleware('adminmiddleware'); 
 Route::get('/importstu', 'ImportStudents@display')->name('importstu')->middleware('adminmiddleware'); 
+
+
+Route::get('/stuatt', 'ViewattController@display')->name('stuatt')->middleware('studentmiddleware'); 
+
 
 
 Auth::routes();

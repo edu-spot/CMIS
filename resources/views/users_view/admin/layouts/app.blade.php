@@ -3,17 +3,17 @@
 <html lang="en">
 
 <head>
-	@include('users_view.admin.layouts.head')
+	@include('layouts.head')
 </head>
 
 <body>
 	<body class="hold-transition skin-purple sidebar-mini">
 	<div class="wrapper">
 
-		@include('users_view.admin.layouts.header')
+		@include('layouts.header')
 		@include('users_view.admin.layouts.sidebar')
-		@include('users_view.admin.layouts.blank')
-		@include('users_view.admin.layouts.footer')
+		@include('layouts.blank')
+		@include('layouts.footer')
 
 	</div>
 	

@@ -1,4 +1,4 @@
-@extends('users_view.admin.layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <h1>Adding this functionality soon</h1>

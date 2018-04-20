@@ -32,7 +32,7 @@
                 <div class="form-group">
                   <label for="exampleInputFile">File input</label>
                   <input type="file" name="import_file" />
-                  <p class="help-block">Upload clinic-data file</p>
+                  <p class="help-block">Upload Student-data file</p>
                 </div>
               </div>
               <!-- /.box-body -->
