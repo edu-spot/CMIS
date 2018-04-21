@@ -48,7 +48,7 @@
                                     Create Timeslots 
                                 </button>
                             </div>
-                            (only creates 1 hour slots just need to add insert lines for 45 min slots)
+                           {{--  (only creates 1 hour slots just need to add insert lines for 45 min slots) --}}
                         </div>
 
 

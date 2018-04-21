@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubjectsTable extends Migration
+class CreateMarksCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,18 @@ class CreateSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subjects', function (Blueprint $table) {
-            $table->increments('subjectid');
-            $table->string('sub_name');
-            $table->string('sub_alais');
-            $table->integer('sub_code')->unique();
-            $table->integer('semester_id')->unsigned();
+        Schema::create('marks_categories', function (Blueprint $table) {
+            $table->increments('markscategoryid');
+            $table->integer('subject_id')->unsigned();
+            $table->string('marks_category_name');
+            $table->string('marks_category_alias');
+            $table->integer('min_marks');
+            $table->integer('max_marks');
             $table->integer('created_by')->unsigned();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
 
-            $table->foreign('semester_id')->references('semesterid')->on('semesters');
+            $table->foreign('subject_id')->references('subjectid')->on('subjects');
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
         });
@@ -36,6 +37,6 @@ class CreateSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subjects');
+        Schema::dropIfExists('marks_categories');
     }
 }
