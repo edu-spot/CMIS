@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2018 at 07:01 AM
+-- Generation Time: Apr 21, 2018 at 10:05 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -41,15 +41,6 @@ CREATE TABLE `attcolls` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `attcolls`
---
-
-INSERT INTO `attcolls` (`id`, `attdate`, `timeslot_id`, `branch_id`, `semester_id`, `sclass_id`, `subject_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(47, '2018-04-07', 1, 1, 5, 4, 2, 2, NULL, '2018-04-07 12:13:58', '2018-04-07 12:13:58'),
-(48, '2018-04-10', 1, 1, 5, 4, 2, 2, NULL, '2018-04-10 12:00:19', '2018-04-10 12:00:19'),
-(49, '2018-04-10', 2, 1, 5, 4, 3, 2, NULL, '2018-04-10 12:00:40', '2018-04-10 12:00:40');
 
 -- --------------------------------------------------------
 
@@ -151,8 +142,32 @@ CREATE TABLE `emp_statuses` (
 --
 
 CREATE TABLE `marks_categories` (
-  `markscategoryid` int(10) UNSIGNED NOT NULL
+  `markscategoryid` int(10) UNSIGNED NOT NULL,
+  `subject_id` int(10) UNSIGNED NOT NULL,
+  `type` int(11) NOT NULL,
+  `marks_category_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marks_category_alias` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `min_marks` int(11) NOT NULL,
+  `max_marks` int(11) NOT NULL,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `marks_categories`
+--
+
+INSERT INTO `marks_categories` (`markscategoryid`, `subject_id`, `type`, `marks_category_name`, `marks_category_alias`, `min_marks`, `max_marks`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 2, 0, 'theory_DataWarehouse and Dataminning', 'th_DWM', 8, 20, 2, NULL, '2018-04-21 20:30:00', '2018-04-21 18:30:04'),
+(2, 2, 1, 'practical_DataWarehouse and Dataminning', 'pr_DWM', 10, 25, 2, NULL, '2018-04-21 20:30:00', '2018-04-21 18:30:04'),
+(3, 3, 1, 'practical_Parallel Distributed Systems', 'pr_PDS', 10, 25, 2, NULL, '2018-04-21 20:30:00', '2018-04-21 18:30:04'),
+(4, 3, 0, 'theory_Parallel Distributed Systems', 'th_PDS', 8, 20, 2, NULL, '2018-04-21 20:30:00', '2018-04-21 18:30:04'),
+(5, 4, 1, 'practical_Data Forensics', 'pr_DF', 10, 25, 2, NULL, '2018-04-21 20:30:00', '2018-04-21 18:30:04'),
+(6, 4, 0, 'theory_Data Forensics', 'th_DF', 8, 20, 2, NULL, '2018-04-21 20:30:00', '2018-04-21 18:30:04'),
+(7, 5, 1, 'practical_Human Machine Interaction', 'pr_HMI', 10, 25, 2, NULL, '2018-04-21 20:30:00', '2018-04-21 18:30:04'),
+(8, 5, 0, 'theory_Human Machine Interaction', 'th_HMI', 8, 20, 2, NULL, '2018-04-21 20:30:00', '2018-04-21 18:30:04');
 
 -- --------------------------------------------------------
 
@@ -161,7 +176,16 @@ CREATE TABLE `marks_categories` (
 --
 
 CREATE TABLE `marks_masters` (
-  `marks_master_id` int(10) UNSIGNED NOT NULL
+  `marksmasterid` int(10) UNSIGNED NOT NULL,
+  `subject_id` int(10) UNSIGNED NOT NULL,
+  `markscategory_id` int(10) UNSIGNED NOT NULL,
+  `stu_id` int(10) UNSIGNED NOT NULL,
+  `obtained_marks_ut1` int(11) DEFAULT NULL,
+  `obtained_marks_ut2` int(11) DEFAULT NULL,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -194,11 +218,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (42, '2018_02_18_092550_create_emp_masters_table', 1),
 (43, '2018_02_18_093229_create_emp_infos_table', 1),
 (44, '2018_02_18_094519_create_emp_statuses_table', 1),
-(45, '2018_02_20_104432_create_marks_categories_table', 1),
-(46, '2018_02_20_104442_create_marks_masters_table', 1),
 (47, '2018_03_06_145438_create_timeslots_table', 1),
-(54, '2018_04_06_165153_create_attcolls_table', 2),
-(55, '2018_04_20_090314_create_stu_attendences_table', 2);
+(64, '2018_04_06_165153_create_attcolls_table', 2),
+(65, '2018_04_20_090314_create_stu_attendences_table', 2),
+(66, '2018_04_20_104432_create_marks_categories_table', 2),
+(67, '2018_04_21_104442_create_marks_masters_table', 2);
 
 -- --------------------------------------------------------
 
@@ -211,6 +235,13 @@ CREATE TABLE `password_resets` (
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('ssvds@svds.com', '$2y$10$lr6W1xSUzSfdTyDpq.LI7.TjhpnIJ4ms8FzrsQgfjbUm2yHOfxbl.', '2018-04-20 13:49:22');
 
 -- --------------------------------------------------------
 
@@ -288,30 +319,6 @@ CREATE TABLE `stu_attendences` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `stu_attendences`
---
-
-INSERT INTO `stu_attendences` (`id`, `attcoll_id`, `attdate`, `status`, `timeslot_id`, `branch_id`, `semester_id`, `sclass_id`, `subject_id`, `stumaster_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(118, 47, '2018-04-07', 1, 1, 1, 5, 4, 2, 2, 2, NULL, '2018-04-07 12:13:58', '2018-04-07 12:13:58'),
-(119, 47, '2018-04-07', 0, 1, 1, 5, 4, 2, 3, 2, NULL, '2018-04-07 12:13:58', '2018-04-07 12:13:58'),
-(120, 47, '2018-04-07', 1, 1, 1, 5, 4, 2, 4, 2, NULL, '2018-04-07 12:13:58', '2018-04-07 12:13:58'),
-(121, 47, '2018-04-07', 1, 1, 1, 5, 4, 2, 5, 2, NULL, '2018-04-07 12:13:58', '2018-04-07 12:13:58'),
-(122, 47, '2018-04-07', 1, 1, 1, 5, 4, 2, 6, 2, NULL, '2018-04-07 12:13:58', '2018-04-07 12:13:58'),
-(123, 47, '2018-04-07', 0, 1, 1, 5, 4, 2, 7, 2, NULL, '2018-04-07 12:13:58', '2018-04-07 12:13:58'),
-(124, 48, '2018-04-10', 1, 1, 1, 5, 4, 2, 2, 2, NULL, '2018-04-10 12:00:19', '2018-04-10 12:00:19'),
-(125, 48, '2018-04-10', 1, 1, 1, 5, 4, 2, 3, 2, NULL, '2018-04-10 12:00:19', '2018-04-10 12:00:19'),
-(126, 48, '2018-04-10', 1, 1, 1, 5, 4, 2, 4, 2, NULL, '2018-04-10 12:00:19', '2018-04-10 12:00:19'),
-(127, 48, '2018-04-10', 1, 1, 1, 5, 4, 2, 5, 2, NULL, '2018-04-10 12:00:19', '2018-04-10 12:00:19'),
-(128, 48, '2018-04-10', 1, 1, 1, 5, 4, 2, 6, 2, NULL, '2018-04-10 12:00:19', '2018-04-10 12:00:19'),
-(129, 48, '2018-04-10', 1, 1, 1, 5, 4, 2, 7, 2, NULL, '2018-04-10 12:00:19', '2018-04-10 12:00:19'),
-(130, 49, '2018-04-10', 1, 2, 1, 5, 4, 3, 2, 2, NULL, '2018-04-10 12:00:40', '2018-04-10 12:00:40'),
-(131, 49, '2018-04-10', 0, 2, 1, 5, 4, 3, 3, 2, NULL, '2018-04-10 12:00:40', '2018-04-10 12:00:40'),
-(132, 49, '2018-04-10', 1, 2, 1, 5, 4, 3, 4, 2, NULL, '2018-04-10 12:00:40', '2018-04-10 12:00:40'),
-(133, 49, '2018-04-10', 0, 2, 1, 5, 4, 3, 5, 2, NULL, '2018-04-10 12:00:40', '2018-04-10 12:00:40'),
-(134, 49, '2018-04-10', 1, 2, 1, 5, 4, 3, 6, 2, NULL, '2018-04-10 12:00:40', '2018-04-10 12:00:40'),
-(135, 49, '2018-04-10', 0, 2, 1, 5, 4, 3, 7, 2, NULL, '2018-04-10 12:00:40', '2018-04-10 12:00:40');
-
 -- --------------------------------------------------------
 
 --
@@ -368,7 +375,13 @@ INSERT INTO `stu_infos` (`stuinfoid`, `stu_unique_id`, `stu_title`, `stu_first_n
 (3, NULL, NULL, 'yash', 'ramesh', 'Patil', 'Patil', 'male', '1996-08-30', 'yash@yash.com', 78998778, 'a', 'm', 'hindu', NULL, 'english', 4, 2, NULL, '2018-04-06 05:29:59', '2018-04-06 05:29:59'),
 (4, NULL, NULL, 'akshay', 'Ghangurde', 'Ghangurde', 'Ghangurde', 'male', '1996-02-01', 'akshay@akshay.com', 654456654, 's', 'Mumbai', 'hindu', NULL, 'english', 5, 2, NULL, '2018-04-06 05:31:14', '2018-04-06 05:31:14'),
 (5, NULL, NULL, 'linus', 'sabestain', 'sabestain', 'sabestain', 'male', '1897-05-30', 'linus@linus.com', 321456789, 'f', 'dc', 'Christain', NULL, 'marathi', 6, 2, NULL, '2018-04-06 05:38:09', '2018-04-06 05:38:09'),
-(6, NULL, NULL, 'ash', 'c4etech', 'c4etech', 'c4etech', 'male', '1988-05-02', 'ash@ash.com', 789456654, 's', 'chennai', 'hindu', NULL, 'tamil', 7, 2, NULL, '2018-04-06 05:39:30', '2018-04-06 05:39:30');
+(6, NULL, NULL, 'ash', 'c4etech', 'c4etech', 'c4etech', 'male', '1988-05-02', 'ash@ash.com', 789456654, 's', 'chennai', 'hindu', NULL, 'tamil', 7, 2, NULL, '2018-04-06 05:39:30', '2018-04-06 05:39:30'),
+(7, NULL, NULL, 'sushrut', 'vijay', 'dhadwe', 'rasika', 'male', '1996-08-30', 'ssvds@svds.com', 199999999, 'A', 'mumbai', 'hindu', NULL, 'english', 8, 2, NULL, '2018-04-19 12:08:44', '2018-04-19 12:08:44'),
+(8, NULL, NULL, 'swapnil', 'dabade', 'dabade', 'dabade', 'male', '1996-08-30', 'sswapnil@swapnil.com', 187789987, 'q', 'sdfhdsfh', 'asdasd', NULL, 'dasdas', 9, 2, NULL, '2018-04-19 12:08:44', '2018-04-19 12:08:44'),
+(9, NULL, NULL, 'yash', 'ramesh', 'Patil', 'Patil', 'male', '1996-08-30', 'syash@yash.com', 18998778, 'a', 'm', 'hindu', NULL, 'english', 10, 2, NULL, '2018-04-19 12:08:44', '2018-04-19 12:08:44'),
+(10, NULL, NULL, 'akshay', 'Ghangurde', 'Ghangurde', 'Ghangurde', 'male', '1996-02-01', 'sakshay@akshay.com', 154456654, 's', 'Mumbai', 'hindu', NULL, 'english', 11, 2, NULL, '2018-04-19 12:08:44', '2018-04-19 12:08:44'),
+(11, NULL, NULL, 'linus', 'sabestain', 'sabestain', 'sabestain', 'male', '1897-05-30', 'slinus@linus.com', 121456789, 'f', 'dc', 'Christain', NULL, 'marathi', 12, 2, NULL, '2018-04-19 12:08:44', '2018-04-19 12:08:44'),
+(12, NULL, NULL, 'ash', 'c4etech', 'c4etech', 'c4etech', 'male', '1988-05-02', 'sash@ash.com', 189456654, 's', 'chennai', 'hindu', NULL, 'tamil', 13, 2, NULL, '2018-04-19 12:08:44', '2018-04-19 12:08:44');
 
 -- --------------------------------------------------------
 
@@ -397,7 +410,13 @@ INSERT INTO `stu_masters` (`stuid`, `user_id`, `created_by`, `is_status`, `updat
 (4, 7, 2, 0, NULL, 4, '2018-04-06 05:29:59', '2018-04-06 05:29:59'),
 (5, 8, 2, 0, NULL, 4, '2018-04-06 05:31:14', '2018-04-06 05:31:14'),
 (6, 9, 2, 0, NULL, 4, '2018-04-06 05:38:09', '2018-04-06 05:38:09'),
-(7, 10, 2, 0, NULL, 4, '2018-04-06 05:39:30', '2018-04-06 05:39:30');
+(7, 10, 2, 0, NULL, 4, '2018-04-06 05:39:30', '2018-04-06 05:39:30'),
+(8, 11, 2, 0, NULL, 4, '2018-04-19 12:08:44', '2018-04-19 12:08:44'),
+(9, 12, 2, 0, NULL, 4, '2018-04-19 12:08:44', '2018-04-19 12:08:44'),
+(10, 13, 2, 0, NULL, 4, '2018-04-19 12:08:44', '2018-04-19 12:08:44'),
+(11, 14, 2, 0, NULL, 4, '2018-04-19 12:08:44', '2018-04-19 12:08:44'),
+(12, 15, 2, 0, NULL, 4, '2018-04-19 12:08:44', '2018-04-19 12:08:44'),
+(13, 16, 2, 0, NULL, 4, '2018-04-19 12:08:44', '2018-04-19 12:08:44');
 
 -- --------------------------------------------------------
 
@@ -442,7 +461,8 @@ INSERT INTO `subjects` (`subjectid`, `sub_name`, `sub_alais`, `sub_code`, `semes
 (2, 'DataWarehouse and Dataminning', 'DWM', 120, 5, 2, NULL, '2018-04-05 08:57:28', '2018-04-05 08:57:28'),
 (3, 'Parallel Distributed Systems', 'PDS', 130, 5, 2, NULL, '2018-04-05 08:57:42', '2018-04-05 08:57:42'),
 (4, 'Data Forensics', 'DF', 140, 5, 2, NULL, '2018-04-05 08:58:00', '2018-04-05 08:58:00'),
-(5, 'Human Machine Interaction', 'HMI', 150, 5, 2, NULL, '2018-04-05 08:58:22', '2018-04-05 08:58:22');
+(5, 'Human Machine Interaction', 'HMI', 150, 5, 2, NULL, '2018-04-05 08:58:22', '2018-04-05 08:58:22'),
+(38, 'Cloud Computing', 'ccl', 160, 5, 2, NULL, '2018-04-21 14:14:29', '2018-04-21 14:14:29');
 
 -- --------------------------------------------------------
 
@@ -495,14 +515,20 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `password`, `email`, `user_type`, `is_block`, `created_by`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'test', '$2y$10$6TwI/KX73lr7JpHUl619X.3L1HvJU.XPnQlSKGiM/gajYUJp2j9xC', 'test@test.com', 'S', 0, NULL, NULL, NULL, NULL),
-(2, 'admin', '$2y$10$h5.bflXiH6S1gmpb..OG8uWimiMLCYM5L509FagJmRdHxRwhsfsl2', 'admin@admin.com', 'A', 0, NULL, 'NEqQxBqI7v5VGgEUzLqKnS5QzyDZQ2yNUpB3UK5RwaOd4gqi7jSgPUas7WHJ', NULL, NULL),
+(1, 'test', '$2y$10$6TwI/KX73lr7JpHUl619X.3L1HvJU.XPnQlSKGiM/gajYUJp2j9xC', 'test@test.com', 'S', 0, NULL, '42lJpGzwmEUIj86wK3PdRqpOBIp41RsFwJ907axU2oqvTVbxY8J1FdirL47o', NULL, NULL),
+(2, 'admin', '$2y$10$h5.bflXiH6S1gmpb..OG8uWimiMLCYM5L509FagJmRdHxRwhsfsl2', 'admin@admin.com', 'A', 0, NULL, 'xoOVMS6ewObFawzwBAMiGMeST0geoFQafPxAavY2mbCNkmN7z6OQVCCkY1Ke', NULL, NULL),
 (5, 'Sushrut', '$2y$10$3270ujU5kMpJyQF9GrFkc.BxKMG9LwyWgwC9KxkluL0/kF6Zax.Ly', 'svds@svds.com', 'S', 0, NULL, NULL, '2018-04-06 05:27:27', '2018-04-06 05:27:27'),
 (6, 'swapnil', '$2y$10$JWgR8zI3Ga1TXk0vZa4dLuYYSZXNRl3qjm8Eh4CaahslUsD54iZ7K', 'swapnil@swapnil.com', 'S', 0, NULL, NULL, '2018-04-06 05:28:46', '2018-04-06 05:28:46'),
 (7, 'Yash', '$2y$10$6QIJk78oRrQIkIZfs9rIa.fQhMNIB3lpFwKyEGu99pms0qSqhnt.e', 'yash@yash.com', 'S', 0, NULL, NULL, '2018-04-06 05:29:59', '2018-04-06 05:29:59'),
 (8, 'Akshay', '$2y$10$nNUX..RSkiB7ZhZlLwDEnOCIYED/28yQjFpJG5VX/Mb66OjKC3QYu', 'akshay@akshay.com', 'S', 0, NULL, NULL, '2018-04-06 05:31:14', '2018-04-06 05:31:14'),
 (9, 'linus', '$2y$10$pPzJMh.biOPoKbsSUiB0BezowZwY0hvLq2ZNeREDXPADdu2la7FHO', 'linus@linus.com', 'S', 0, NULL, NULL, '2018-04-06 05:38:09', '2018-04-06 05:38:09'),
-(10, 'ash', '$2y$10$49YWOvwyfG2nl2b6vU.RbelGHck3BfTa1dsmvhXPnKzqhHBo7DtDm', 'ash@ash.com', 'S', 0, NULL, NULL, '2018-04-06 05:39:30', '2018-04-06 05:39:30');
+(10, 'ash', '$2y$10$49YWOvwyfG2nl2b6vU.RbelGHck3BfTa1dsmvhXPnKzqhHBo7DtDm', 'ash@ash.com', 'S', 0, NULL, NULL, '2018-04-06 05:39:30', '2018-04-06 05:39:30'),
+(11, 'sushrut', '$2y$10$ZXslXSlm59f5GfoL2DsJWOsXRfqV46sro7voprX3qQXJnKGszGBU2', 'ssvds@svds.com', 'S', 0, NULL, 'OSNVFT4Bx0zNlpJ4UzWIpOWul1i11Bs74m503MIGH62rWFpb31K3xhzueSK0', '2018-04-19 12:08:43', '2018-04-19 12:08:43'),
+(12, 'swapnil', '$2y$10$.H7Lgf.lf89TMWNuOoYaueN9oUg9GAw09XDeVeKeE4S2fzcQ7jXN2', 'sswapnil@swapnil.com', 'S', 0, NULL, NULL, '2018-04-19 12:08:44', '2018-04-19 12:08:44'),
+(13, 'yash', '$2y$10$/VNjyCJEuoJYgfJcG8kcRuy/eICbIUZHL89OUmCgOG8q500olrWaq', 'syash@yash.com', 'S', 0, NULL, NULL, '2018-04-19 12:08:44', '2018-04-19 12:08:44'),
+(14, 'akshay', '$2y$10$voIMQ02oWgFGXhFAXxvslO/D.T16ZuOIGVbK0g.thZTSiv131P3Nq', 'sakshay@akshay.com', 'S', 0, NULL, NULL, '2018-04-19 12:08:44', '2018-04-19 12:08:44'),
+(15, 'linus', '$2y$10$xbY4NCyT/VII0Xjg.0Aw3.vlIpDgfnppHw6U7h9v1EyQN2KbMKV2S', 'slinus@linus.com', 'S', 0, NULL, NULL, '2018-04-19 12:08:44', '2018-04-19 12:08:44'),
+(16, 'ash', '$2y$10$sv29oiWbeF6ffJ/Eg9BpuucIoOR3bc4kCwHll3yWbccgtXS1QefJC', 'sash@ash.com', 'S', 0, NULL, NULL, '2018-04-19 12:08:44', '2018-04-19 12:08:44');
 
 --
 -- Indexes for dumped tables
@@ -561,13 +587,21 @@ ALTER TABLE `emp_statuses`
 -- Indexes for table `marks_categories`
 --
 ALTER TABLE `marks_categories`
-  ADD PRIMARY KEY (`markscategoryid`);
+  ADD PRIMARY KEY (`markscategoryid`),
+  ADD KEY `marks_categories_subject_id_foreign` (`subject_id`),
+  ADD KEY `marks_categories_created_by_foreign` (`created_by`),
+  ADD KEY `marks_categories_updated_by_foreign` (`updated_by`);
 
 --
 -- Indexes for table `marks_masters`
 --
 ALTER TABLE `marks_masters`
-  ADD PRIMARY KEY (`marks_master_id`);
+  ADD PRIMARY KEY (`marksmasterid`),
+  ADD KEY `marks_masters_subject_id_foreign` (`subject_id`),
+  ADD KEY `marks_masters_markscategory_id_foreign` (`markscategory_id`),
+  ADD KEY `marks_masters_stu_id_foreign` (`stu_id`),
+  ADD KEY `marks_masters_created_by_foreign` (`created_by`),
+  ADD KEY `marks_masters_updated_by_foreign` (`updated_by`);
 
 --
 -- Indexes for table `migrations`
@@ -657,6 +691,7 @@ ALTER TABLE `stu_statuses`
 --
 ALTER TABLE `subjects`
   ADD PRIMARY KEY (`subjectid`),
+  ADD UNIQUE KEY `sub_code` (`sub_code`),
   ADD KEY `subjects_semester_id_foreign` (`semester_id`),
   ADD KEY `subjects_created_by_foreign` (`created_by`),
   ADD KEY `subjects_updated_by_foreign` (`updated_by`);
@@ -684,7 +719,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attcolls`
 --
 ALTER TABLE `attcolls`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `branches`
@@ -714,19 +749,19 @@ ALTER TABLE `emp_statuses`
 -- AUTO_INCREMENT for table `marks_categories`
 --
 ALTER TABLE `marks_categories`
-  MODIFY `markscategoryid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `markscategoryid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `marks_masters`
 --
 ALTER TABLE `marks_masters`
-  MODIFY `marks_master_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `marksmasterid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `sclasses`
@@ -744,7 +779,7 @@ ALTER TABLE `semesters`
 -- AUTO_INCREMENT for table `stu_attendences`
 --
 ALTER TABLE `stu_attendences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `stu_categories`
@@ -756,13 +791,13 @@ ALTER TABLE `stu_categories`
 -- AUTO_INCREMENT for table `stu_infos`
 --
 ALTER TABLE `stu_infos`
-  MODIFY `stuinfoid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `stuinfoid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `stu_masters`
 --
 ALTER TABLE `stu_masters`
-  MODIFY `stuid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `stuid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `stu_statuses`
@@ -774,7 +809,7 @@ ALTER TABLE `stu_statuses`
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `subjectid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `subjectid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `timeslots`
@@ -786,7 +821,7 @@ ALTER TABLE `timeslots`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
@@ -833,6 +868,24 @@ ALTER TABLE `emp_masters`
 ALTER TABLE `emp_statuses`
   ADD CONSTRAINT `emp_statuses_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `emp_statuses_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `marks_categories`
+--
+ALTER TABLE `marks_categories`
+  ADD CONSTRAINT `marks_categories_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `marks_categories_subject_id_foreign` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subjectid`),
+  ADD CONSTRAINT `marks_categories_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `marks_masters`
+--
+ALTER TABLE `marks_masters`
+  ADD CONSTRAINT `marks_masters_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `marks_masters_markscategory_id_foreign` FOREIGN KEY (`markscategory_id`) REFERENCES `marks_categories` (`markscategoryid`),
+  ADD CONSTRAINT `marks_masters_stu_id_foreign` FOREIGN KEY (`stu_id`) REFERENCES `stu_masters` (`stuid`),
+  ADD CONSTRAINT `marks_masters_subject_id_foreign` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subjectid`),
+  ADD CONSTRAINT `marks_masters_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `sclasses`

@@ -18,7 +18,8 @@ class CreateMarksMastersTable extends Migration
             $table->integer('subject_id')->unsigned();   
             $table->integer('markscategory_id')->unsigned();
             $table->integer('stu_id')->unsigned();
-            $table->integer('obtained_marks');
+            $table->integer('obtained_marks_ut1')->nullable();
+            $table->integer('obtained_marks_ut2')->nullable();
             $table->integer('created_by')->unsigned();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();

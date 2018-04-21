@@ -48,6 +48,8 @@ Route::get('subjectdelete/{id}','CreateSubjectController@delete')->name('deletes
 Route::post('addsubjects', 'CreateSubjectController@create')->name('addsubjects')->middleware('adminmiddleware');
 
 
+Auth::routes();
+
 
 Route::get('/addsclass', 'CreateSclassController@display')->name('addsclass')->middleware('adminmiddleware');
 Route::get('sclassdelete/{id}','CreateSclassController@delete')->name('deletesclass')->middleware('adminmiddleware');
@@ -59,24 +61,18 @@ Route::post('timeslot', 'SetTimeslotController@create')->name('timeslot')->middl
 
 Route::get('/takeatt', 'CreateStudentAttendenceController@display')->name('takeatt')->middleware('adminmiddleware');
 Route::post('/takeattd', 'CreateStudentAttendenceController@create')->name('takeattd')->middleware('adminmiddleware');
-
 Route::get('/loadsemester', 'CreateStudentAttendenceController@loadsemester')->name('loadsemester')->middleware('adminmiddleware');
 Route::get('/loadsclass', 'CreateStudentAttendenceController@loadsclass')->name('loadsclass')->middleware('adminmiddleware');
 Route::get('/loadsubject', 'CreateStudentAttendenceController@loadsubject')->name('loadsubject')->middleware('adminmiddleware');
-
-
 Route::post('/stoatt', 'CreateStudentAttendenceController@next')->name('stoatt')->middleware('adminmiddleware');
 Route::post('/storeatt', 'CreateStudentAttendenceController@sto')->name('storeatt')->middleware('adminmiddleware');
-
 Route::get('/viewatt', 'CreateStudentAttendenceController@viewa')->name('viewatt')->middleware('adminmiddleware');
-
 Route::post('/vatt', 'CreateStudentAttendenceController@viewatt')->name('vatt')->middleware('adminmiddleware');
-
-
 Route::post('adds', 'CreateStudentController@create')->name('adds');
-
 Route::post('/downatt', 'CreateStudentAttendenceController@downreturn')->name('downatt')->middleware('adminmiddleware');
 Route::get('/downatt', 'CreateStudentAttendenceController@downatt')->name('downatt')->middleware('adminmiddleware');
+
+
 Route::post('/importstu', 'ImportStudents@insert')->name('importstu')->middleware('adminmiddleware'); 
 Route::get('/importstu', 'ImportStudents@display')->name('importstu')->middleware('adminmiddleware'); 
 
@@ -84,8 +80,12 @@ Route::get('/importstu', 'ImportStudents@display')->name('importstu')->middlewar
 Route::get('/stuatt', 'ViewattController@display')->name('stuatt')->middleware('studentmiddleware'); 
 
 
+Route::get('/stumarks', 'AddMarksController@display')->name('stumarks')->middleware('adminmiddleware'); 
+Route::post('/stomarks', 'AddMarksController@next')->name('stomarks')->middleware('adminmiddleware');
+Route::post('/storemarks', 'AddMarksController@sto')->name('storemarks')->middleware('adminmiddleware');
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
 Route::get('/view', 'CreateStudentController@view')->name('view');

@@ -83,6 +83,21 @@
         </ul>
       </li>
 
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-edit"></i> <span>Marks Management</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          {{-- <li><a href="/timeslot"><i class="fa fa-circle-o"></i> Manage Time Slots of lectures</a></li> --}}
+          <li><a href="/stumarks"><i class="fa fa-circle-o"></i> Enter Marks</a></li>
+          <li><a href="/viewatt"><i class="fa fa-circle-o"></i> View Attendence</a></li>
+          <li><a href="/downatt"><i class="fa fa-circle-o"></i> Download Attendence</a></li>
+        </ul>
+      </li>
+
       
     </ul>
   </section>
