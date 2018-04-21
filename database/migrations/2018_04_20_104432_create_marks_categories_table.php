@@ -16,6 +16,7 @@ class CreateMarksCategoriesTable extends Migration
         Schema::create('marks_categories', function (Blueprint $table) {
             $table->increments('markscategoryid');
             $table->integer('subject_id')->unsigned();
+            $table->integer('type');
             $table->string('marks_category_name');
             $table->string('marks_category_alias');
             $table->integer('min_marks');

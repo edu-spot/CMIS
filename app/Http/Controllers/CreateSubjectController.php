@@ -20,7 +20,14 @@ class CreateSubjectController extends Controller
         // $stall = sclass::where('semester_id', $value)->exists();
 
         // if($stall == '0')
-        // {   
+        // {  
+        $mata = marks_categories::where('subject_id',$value)->get();
+         foreach ($mata as $mata) {
+         $go = $mata->delete(); 
+         }
+         
+         if($go == 'success')
+         {
        $record = subject::where('subjectid',$value)->first();
        $state = $record->delete(); 
        if($state == 'success')
@@ -28,7 +35,7 @@ class CreateSubjectController extends Controller
         return redirect()->back()->with('status','Subject entry Deleted');
     }
     // }
-
+}
     else 
     {
      return redirect()->back()->with('err','Subject cannot be deleted due to donald trump');   
@@ -65,10 +72,13 @@ public function create(Request $data){
          // $fff = 'theory'.$data['subjectalais']; 
          // return $fff;
         // return response()->json($subid);
+ $prac=1;
+ $theo=0;
  if($data['theory'] == 1)
  {   
     $tablec = new marks_categories;
     $tablec->subject_id = $subid->subjectid;
+    $tablec->type = '0';
     $tablec->marks_category_name = 'theory_'.$data['subjectname'];
     $tablec->marks_category_alias = 'th_'.$data['subjectalais'];
     $tablec->min_marks = $data['theorymin'];
@@ -82,6 +92,7 @@ if($data['Pactical'] == 1)
  {
     $tablec = new marks_categories;
     $tablec->subject_id = $subid->subjectid;
+    $tablec->type = '1';
     $tablec->marks_category_name = 'practical_'.$data['subjectname'];
     $tablec->marks_category_alias = 'pr_'.$data['subjectalais'];
     $tablec->min_marks = $data['Practicalmin'];
