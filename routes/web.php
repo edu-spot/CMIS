@@ -86,6 +86,9 @@ Route::post('/storemarks', 'AddMarksController@sto')->name('storemarks')->middle
 Route::get('/viewmarks', 'AddMarksController@viewm')->name('viewmarks')->middleware('adminmiddleware');
 Route::post('/vmarks', 'AddMarksController@viewatt')->name('vmarks')->middleware('adminmiddleware');
 Route::get('/stumarksview', 'AddMarksController@individual')->name('stumarksview')->middleware('studentmiddleware'); 
+Route::post('/downmarks', 'AddMarksController@downreturn')->name('downmarks')->middleware('adminmiddleware');
+Route::get('/downmarks', 'AddMarksController@downmarks')->name('downmarks')->middleware('adminmiddleware');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 

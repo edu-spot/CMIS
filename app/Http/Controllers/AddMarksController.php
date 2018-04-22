@@ -228,7 +228,47 @@ class AddMarksController extends Controller
 
 
 
+public function downmarks()
+	{
 
+		$branchs = branch::all();
+		// $timeslots = timeslot::all();
+		//return view('users_view.admin.attendence', compact('records'));
+		return View::make('users_view/admin/savemarks')->with('branchs',$branchs);
+
+	}
+
+
+
+	public function downreturn(Request $req)
+	{
+		//return $req;
+		//$sclass= $req->sclass;
+
+//return $sclass;
+
+// $source = DB::table('stu_masters')->select('stu_first_name','stu_middle_name','stu_last_name','stu_mother_name','stu_gender','stu_dob','stu_email_id','stu_mobile_no','stu_bloodgroup','stu_birthplace','stu_religion','stu_languages','sclass_id')->join('stu_infos','stumasterid','=','stuid')->get();  //export all students
+// return $req;
+
+		$sub = subject::select('subjectid', 'sub_name')->where('semester_id', $req->semester)->get();
+		// return $sub;
+		$source [] = array();
+		foreach ($sub as $sub) {
+		
+		$source[] = DB::table('marks_masters')->select('stu_id','stu_first_name','stu_last_name','obtained_marks_ut1','obtained_marks_ut2','subject_id')->join('stu_infos','stumasterid','=','stu_id')->where([['subject_id', '=', $sub->subjectid],
+		])->get();  //working code
+		
+		}
+
+		return $source;
+
+
+		//return Exporter::make('Excel')->load($source)->stream('att.csv'); 
+
+
+
+
+}
 
 
 }
