@@ -232,14 +232,7 @@ class CreateStudentAttendenceController extends Controller
 		$branchs = branch::all();
 		$timeslots = timeslot::all();
 
-		$attid = DB::table('attcolls')->select('id')
-		->where([
-			['timeslot_id', '=', $data['timeslot']],
-			['sclass_id', '=', $data['sclass']],
-			['subject_id', '=', $data['subject']],
-			['attdate', '=', $data['date']],
-
-		])->first()->id;
+		$attid = DB::table('attcolls')->select('id')->where([['timeslot_id', '=', $data['timeslot']],['sclass_id', '=', $data['sclass']],['subject_id', '=', $data['subject']],['attdate', '=', $data['date']]])->first();
 		if($attid)
 		{
 			
