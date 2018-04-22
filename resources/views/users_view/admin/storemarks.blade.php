@@ -18,7 +18,7 @@
 	<div class="row">
 		<div class="col-md-11">
 			<div class="panel panel-default">
-				<div class="panel-heading">Take attendence</div>
+				<div class="panel-heading">Enter Marks</div>
 
 
 
@@ -127,7 +127,7 @@
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-8">
 									<button type="submit" class="btn btn-primary">
-										Take Attendence
+										Save Marks
 									</button>
 								</div>
 							</div>

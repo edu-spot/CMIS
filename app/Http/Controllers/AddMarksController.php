@@ -161,6 +161,56 @@ public function sto(Request $data)
 
 
 
+public function viewm()
+	{
+		 // $records = DB::table('branches')->get();
+		$branchs = branch::all();
+		// $timeslots = timeslot::all();
+		//return view('users_view.admin.attendence', compact('records'));
+		return View::make('users_view/admin/viewmarks')->with('branchs',$branchs);
+	}
+
+
+
+public function viewatt(Request $data)
+	{
+		// $branchs = branch::all();
+		// $timeslots = timeslot::all();
+
+		// $attid = DB::table('attcolls')->select('id')
+		// ->where([
+		// 	['timeslot_id', '=', $data['timeslot']],
+		// 	['sclass_id', '=', $data['sclass']],
+		// 	['subject_id', '=', $data['subject']],
+		// 	['attdate', '=', $data['date']],
+
+		// ])->first()->id;
+
+
+		$test = DB::table('marks_categories')->select('markscategoryid')->where([
+			['subject_id', '=', $data['subject']],
+			['type', $data['mtype']],
+		])->first();
+		if($test)
+		{
+			
+			$source = DB::table('marks_masters')->join('stu_infos','stumasterid','=','stu_id')->where([
+			['subject_id', '=', $data['subject']],
+			['markscategory_id','=' ,$test->markscategoryid]
+			])->get();
+			//  return $source->all();
+
+			return View::make('users_view/admin/marksview')->with('data',$data)->with('source',$source);        
+		}
+		else {
+			
+		//return view('users_view.admin.attendence', compact('records'));
+			return View::make('users_view/admin/viewatt')->with('status','Cant Find The Record')->with('branchs',$branchs)->with('timeslots',$timeslots);
+
+		}
+	}
+
+
 
 
 

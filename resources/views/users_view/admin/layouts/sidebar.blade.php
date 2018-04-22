@@ -93,7 +93,7 @@
         <ul class="treeview-menu">
           {{-- <li><a href="/timeslot"><i class="fa fa-circle-o"></i> Manage Time Slots of lectures</a></li> --}}
           <li><a href="/stumarks"><i class="fa fa-circle-o"></i> Enter Marks</a></li>
-          <li><a href="/viewatt"><i class="fa fa-circle-o"></i> View Attendence</a></li>
+          <li><a href="/viewmarks"><i class="fa fa-circle-o"></i> View Marks</a></li>
           <li><a href="/downatt"><i class="fa fa-circle-o"></i> Download Attendence</a></li>
         </ul>
       </li>
