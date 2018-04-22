@@ -34,6 +34,10 @@ class HomeController extends Controller
        {
             return view('users_view/student/home');
      }
+     if (Auth::user() &&  Auth::user()->user_type == 'E')
+       {
+            return view('users_view/teacher/home');
+     }
         // return view('home');
     }
 }

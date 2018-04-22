@@ -23,6 +23,6 @@ class employeemiddleware
             return $next($request);
      }
 
-    return redirect('/');
+    return redirect('/home');
     }
 }

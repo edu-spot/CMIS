@@ -22,6 +22,6 @@ class studentmiddleware
             return $next($request);
         }
 
-        return redirect('/');
+        return redirect('/home');
     }
 }

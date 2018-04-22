@@ -25,6 +25,6 @@ class adminmiddleware
             return $next($request);
      }
 
-    return redirect('/');
+    return redirect('/home');
   }  
 }
