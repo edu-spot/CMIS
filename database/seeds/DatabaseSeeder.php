@@ -29,5 +29,12 @@ DB::table('users')->insert([
             'user_type' =>'A',
 
         ]);
+        DB::table('users')->insert([
+            'name' => 'emp',
+            'email' => 'emp@emp.com',
+            'password' => bcrypt('empemp'),
+            'user_type' =>'E',
+
+        ]);
     }
 }

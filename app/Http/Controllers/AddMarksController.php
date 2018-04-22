@@ -250,20 +250,20 @@ public function downmarks()
 // $source = DB::table('stu_masters')->select('stu_first_name','stu_middle_name','stu_last_name','stu_mother_name','stu_gender','stu_dob','stu_email_id','stu_mobile_no','stu_bloodgroup','stu_birthplace','stu_religion','stu_languages','sclass_id')->join('stu_infos','stumasterid','=','stuid')->get();  //export all students
 // return $req;
 
-		$sub = subject::select('subjectid', 'sub_name')->where('semester_id', $req->semester)->get();
-		// return $sub;
-		$source [] = array();
-		foreach ($sub as $sub) {
+		$sub = subject::select('subjectid', 'sub_name')->where('subjectid', $req->subject)->first();
+		 // return $sub;
+		// $source = array();
+		// foreach ($sub as $sub) {
 		
-		$source[] = DB::table('marks_masters')->select('stu_id','stu_first_name','stu_last_name','obtained_marks_ut1','obtained_marks_ut2','subject_id')->join('stu_infos','stumasterid','=','stu_id')->where([['subject_id', '=', $sub->subjectid],
+		$source = DB::table('marks_masters')->select('stu_id','stu_first_name','stu_last_name','obtained_marks_ut1','obtained_marks_ut2','subject_id')->join('stu_infos','stumasterid','=','stu_id')->where([['subject_id', '=', $req->subject],
 		])->get();  //working code
 		
-		}
+		// }
 
-		return $source;
+		//return $source;
 
 
-		//return Exporter::make('Excel')->load($source)->stream('att.csv'); 
+		return Exporter::make('Excel')->load($source)->stream($sub->sub_name.'_Marks.csv'); 
 
 
 

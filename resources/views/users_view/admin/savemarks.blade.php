@@ -65,14 +65,14 @@
 							</div>     
 
 
-{{-- 
+
 							<div class="form-group">           
 								<label for="subject" class="col-md-4 control-label">Subject</label>
 								<select name="subject" class="subject" id="subject_id">
 									<option value="" >-Select-</option>
 								</select>    
 							</div>
- --}}
+
 
 							
 
@@ -177,37 +177,37 @@ jQuery(document).ready(function(){
 
 
 
-	// $(document).on('change','.semester',function(){
-	// 	var semester = $(this).val();
-	// 	console.log(semester);
+	$(document).on('change','.semester',function(){
+		var semester = $(this).val();
+		console.log(semester);
 
-	// 	$.ajax({
-	// 		url:'{{ asset('/loadsubject') }}',
-	// 		method:'GET',
-	// 		data:{'id':semester},
-	// 		success: function(ressubject){
-	// 			console.log(ressubject.length); 
-	// 			if(ressubject.length == '0'){
-	// 				$('select[name="subject"]').empty();
+		$.ajax({
+			url:'{{ asset('/loadsubject') }}',
+			method:'GET',
+			data:{'id':semester},
+			success: function(ressubject){
+				console.log(ressubject.length); 
+				if(ressubject.length == '0'){
+					$('select[name="subject"]').empty();
 					
-	// 				$('select[name="subject"]').append('<option value="0">No Subject found</option>');
+					$('select[name="subject"]').append('<option value="0">No Subject found</option>');
 					
-	// 			}else{  
-	// 				$('select[name="subject"]').empty();
-	// 				$('select[name="subject"]').append('<option value="0" disabled="true" selected="true">-Select-</option>');
-	// 				$.each(ressubject, function(key, value) {
-	// 					$('select[name="subject"]').append('<option value="'+  value.subjectid +'">'+ value.sub_name +'</option>');
- //                            //console.log(value.semesterid);
-	// 				});
-	// 			}
-	// 		},
-	// 		error:function(){
-	// 			console.log("error");
-	// 		}
-	// 	});
+				}else{  
+					$('select[name="subject"]').empty();
+					$('select[name="subject"]').append('<option value="0" disabled="true" selected="true">-Select-</option>');
+					$.each(ressubject, function(key, value) {
+						$('select[name="subject"]').append('<option value="'+  value.subjectid +'">'+ value.sub_name +'</option>');
+                            //console.log(value.semesterid);
+					});
+				}
+			},
+			error:function(){
+				console.log("error");
+			}
+		});
 
 
-	// });
+	});
 
 });
 
