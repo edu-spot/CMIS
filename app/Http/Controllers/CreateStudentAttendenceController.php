@@ -236,7 +236,7 @@ class CreateStudentAttendenceController extends Controller
 		if($attid)
 		{
 			
-			$source = DB::table('stu_attendences')->select('stumaster_id','status','stu_first_name','stu_last_name')->join('stu_infos','stumasterid','=','stumaster_id')->where([['attcoll_id','=', $attid],
+			$source = DB::table('stu_attendences')->select('stumaster_id','status','stu_first_name','stu_last_name')->join('stu_infos','stumasterid','=','stumaster_id')->where([['attcoll_id','=', $attid->id],
 				['timeslot_id', '=', $data['timeslot']],
 				['sclass_id', '=', $data['sclass']],
 				['subject_id', '=', $data['subject']],
