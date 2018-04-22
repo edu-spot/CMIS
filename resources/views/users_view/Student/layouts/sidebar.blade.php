@@ -59,7 +59,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/future"><i class="fa fa-circle-o"></i> View Marks</a></li>
+            <li><a href="/stumarksview"><i class="fa fa-circle-o"></i> View Marks</a></li>
             {{-- <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Import Students</a></li>
             <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Manage Students</a></li> --}}
           </ul>

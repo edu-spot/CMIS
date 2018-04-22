@@ -71,7 +71,7 @@
 								<label for="mtype" class="col-md-4 control-label">Marks Type</label>
 								<select name="mtype" class="mtype" id="mtype_id">
 									<option value="0" >Theory</option>
-									<option value="1" >Practical</option>
+									{{-- <option value="1" >Practical</option> --}}
 								</select>    
 							</div> 
 
